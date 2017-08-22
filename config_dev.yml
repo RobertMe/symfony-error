@@ -1,0 +1,24 @@
+parameters:
+        kernel.secret: abcdefghijklmnopqrstuvwxyz
+
+framework:
+  workflows:
+    foo:
+      type: state_machine
+      supports: stdClass
+      marking_store:
+        type: single_state
+        arguments:
+          - 'state'
+      places:
+        - foo
+        - bar
+      transitions:
+        foo:
+          from: foo
+          to: bar
+
+services:
+  Foo:
+    class: Foo
+    autowire: true
